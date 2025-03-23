@@ -52,32 +52,47 @@ class LostItemController extends Controller
     }
 
     public function edit(LostItem $lostItem)
-    {
-        return view('lost_items.edit', compact('lostItem'));
+{
+    if (!auth()->user()->can('manage-items')) {
+        abort(403, 'Unauthorized action.');
+    }
+    
+    return view('lost_items.edit', compact('lostItem'));
+}
+
+public function update(Request $request, LostItem $lostItem)
+{
+    if (!auth()->user()->can('manage-items')) {
+        abort(403, 'Unauthorized action.');
     }
 
-    public function update(Request $request, LostItem $lostItem)
-    {
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'location' => 'required',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
-        ]);
+    $request->validate([
+        'name' => 'required',
+        'description' => 'required',
+        'location' => 'required',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
 
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('lost_items', 'public');
-            $lostItem->image = $imagePath;
-        }
+    $data = $request->only(['name', 'description', 'location']);
 
-        $lostItem->update($request->only('name', 'description', 'location', 'status'));
-
-        return redirect()->route('lost-items.index')->with('success', 'Lost item updated successfully!');
+    if ($request->hasFile('image')) {
+        $imagePath = $request->file('image')->store('lost_items', 'public');
+        $data['image'] = $imagePath;
     }
 
-    public function destroy(LostItem $lostItem)
-    {
-        $lostItem->delete();
-        return redirect()->route('lost-items.index')->with('success', 'Lost item deleted successfully!');
+    $lostItem->update($data);
+
+    return redirect()->route('lost-items.index')->with('success', 'Item updated successfully.');
+}
+
+public function destroy(LostItem $lostItem)
+{
+    if (!auth()->user()->can('manage-items')) {
+        abort(403, 'Unauthorized action.');
     }
+
+    $lostItem->delete();
+
+    return redirect()->route('lost-items.index')->with('success', 'Item deleted successfully.');
+}
 }

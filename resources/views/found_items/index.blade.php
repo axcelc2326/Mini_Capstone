@@ -4,12 +4,6 @@
     <div class="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg">
         <h1 class="text-2xl font-bold text-gray-800 mb-4">Found Items</h1>
 
-        <a href="{{ route('found-items.create') }}" 
-            class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300"
-            aria-label="Report a found item">
-            Report Found Item
-        </a>
-
         <div class="mt-6">
             @if ($foundItems->isEmpty())
                 <p class="text-gray-500">No found items reported yet.</p>
@@ -40,25 +34,27 @@
                                 </a>
                             </div>
 
-                            <!-- Edit & Delete Buttons -->
-                            <div class="flex gap-2">
-                                <!-- Edit -->
-                                <a href="{{ route('found-items.edit', $item) }}" 
-                                    class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 transition">
-                                    ✏️ Edit
-                                </a>
+                            <!-- Edit & Delete Buttons (Only for users with 'manage-items' permission) -->
+                            @can('manage-items')
+                                <div class="flex gap-2">
+                                    <!-- Edit -->
+                                    <a href="{{ route('found-items.edit', $item) }}" 
+                                        class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 transition">
+                                        ✏️ Edit
+                                    </a>
 
-                                <!-- Delete -->
-                                <form action="{{ route('found-items.destroy', $item) }}" method="POST" 
-                                    onsubmit="return confirm('Are you sure you want to delete this item?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" 
-                                        class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition">
-                                        🗑️ Delete
-                                    </button>
-                                </form>
-                            </div>
+                                    <!-- Delete -->
+                                    <form action="{{ route('found-items.destroy', $item) }}" method="POST" 
+                                        onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" 
+                                            class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition">
+                                            🗑️ Delete
+                                        </button>
+                                    </form>
+                                </div>
+                            @endcan
                         </li>
                     @endforeach
                 </ul>

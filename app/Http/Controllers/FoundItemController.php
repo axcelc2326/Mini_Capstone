@@ -55,11 +55,19 @@ class FoundItemController extends Controller
 
     public function edit(FoundItem $foundItem)
     {
+        if (!auth()->user()->can('manage-items')) {
+            abort(403, 'Unauthorized action.');
+        }
+
         return view('found_items.edit', compact('foundItem'));
     }
 
     public function update(Request $request, FoundItem $foundItem)
     {
+        if (!auth()->user()->can('manage-items')) {
+            abort(403, 'Unauthorized action.');
+        }
+
         $request->validate([
             'name' => 'required',
             'description' => 'required',
@@ -88,9 +96,14 @@ class FoundItemController extends Controller
 
     public function destroy(FoundItem $foundItem)
     {
+        if (!auth()->user()->can('manage-items')) {
+            abort(403, 'Unauthorized action.');
+        }
+
         if ($foundItem->image) {
             Storage::disk('public')->delete($foundItem->image);
         }
+        
         $foundItem->delete();
 
         return redirect()->route('found-items.index')->with('success', 'Found item deleted successfully!');
