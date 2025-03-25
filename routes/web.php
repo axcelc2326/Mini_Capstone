@@ -17,6 +17,10 @@ Route::get('/home', function () {
     return view('home.index');
 })->name('home');
 
+Route::get('/terms_and_services', function () {
+    return view('terms_and_services.index');
+})->name('terms.services');
+
 Route::resource('lost-items', LostItemController::class)->middleware(['auth']); 
 
 Route::resource('found-items', FoundItemController::class)->middleware(['auth']);
