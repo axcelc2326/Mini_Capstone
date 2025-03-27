@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="max-w-4xl mx-auto p-6 bg-gray-900 shadow-lg rounded-lg text-gray-300">
-        <h1 class="text-2xl font-bold text-gray-100 mb-4">Found Items</h1>
+        <h1 class="text-2xl font-semibold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text animate-pulse text-gray-300 mb-4">Found Items</h1>
         
         <div class="mt-6">
             @if ($foundItems->isEmpty())
