@@ -14,7 +14,7 @@
             </h1>
         </a>
         <nav class="flex flex-col space-y-4 flex-1">
-            <a href="{{ route('home') }}" 
+            <a href="{{ url('/') }}" 
                 class="p-3 rounded-lg flex items-center gap-2 transition-all duration-300 
                 {{ request()->routeIs('home') ? 'bg-gray-800 text-emerald-300' : 'hover:bg-gray-800 hover:text-emerald-300 hover:translate-x-1' }}">
                 <i data-lucide="home" class="w-5 h-5"></i> <span>Home</span>
