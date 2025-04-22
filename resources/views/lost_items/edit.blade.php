@@ -9,11 +9,21 @@
                 @csrf
                 @method('PUT')
 
-                <!-- Item Name -->
-                <div>
-                    <label class="block font-semibold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text animate-pulse text-gray-300">Item Name</label>
-                    <input type="text" name="name" value="{{ old('name', $lostItem->name) }}" required 
-                        class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:ring focus:ring-yellow-500 bg-gray-800 shadow-sm text-gray-100">
+                <!-- Row: Item Name + Lost Location -->
+                <div class="flex flex-col md:flex-row md:space-x-4 space-y-5 md:space-y-0">
+                    <!-- Item Name -->
+                    <div class="w-full">
+                        <label class="block font-semibold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text animate-pulse text-gray-300">Item Name</label>
+                        <input type="text" name="name" value="{{ old('name', $lostItem->name) }}" required 
+                            class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:ring focus:ring-yellow-500 bg-gray-800 shadow-sm text-gray-100">
+                    </div>
+
+                    <!-- Lost Location -->
+                    <div class="w-full">
+                        <label class="block font-semibold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text animate-pulse text-gray-300">Lost Location</label>
+                        <input type="text" name="location" value="{{ old('location', $lostItem->location) }}" required 
+                            class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:ring focus:ring-yellow-500 bg-gray-800 shadow-sm text-gray-100">
+                    </div>
                 </div>
 
                 <!-- Description -->
@@ -21,13 +31,6 @@
                     <label class="block font-semibold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text animate-pulse text-gray-300">Description</label>
                     <textarea name="description" required 
                         class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:ring focus:ring-yellow-500 bg-gray-800 shadow-sm text-gray-100">{{ old('description', $lostItem->description) }}</textarea>
-                </div>
-
-                <!-- Lost Location -->
-                <div>
-                    <label class="block font-semibold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text animate-pulse text-gray-300">Lost Location</label>
-                    <input type="text" name="location" value="{{ old('location', $lostItem->location) }}" required 
-                        class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:ring focus:ring-yellow-500 bg-gray-800 shadow-sm text-gray-100">
                 </div>
 
                 <!-- Current Image -->

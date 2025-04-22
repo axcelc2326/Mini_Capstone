@@ -8,19 +8,32 @@
             <form method="POST" action="{{ route('found-items.store') }}" enctype="multipart/form-data" class="space-y-5">
                 @csrf
 
-                <!-- Item Name -->
-                <div>
-                    <label class="block font-semibold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text animate-pulse text-gray-300">Item Name</label>
-                    <input type="text" name="name" value="{{ old('name') }}" required 
-                        class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:ring focus:ring-blue-500 bg-gray-800 shadow-sm text-gray-100">
-                    @error('name')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
+                <!-- Row: Item Name + Found Location -->
+                <div class="flex flex-col md:flex-row md:space-x-4 space-y-5 md:space-y-0">
+                    <!-- Item Name -->
+                    <div class="w-full">
+                        <label class="block font-semibold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text animate-pulse">Item Name</label>
+                        <input type="text" name="name" value="{{ old('name') }}" required 
+                            class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:ring focus:ring-blue-500 bg-gray-800 shadow-sm text-gray-100">
+                        @error('name')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <!-- Found Location -->
+                    <div class="w-full">
+                        <label class="block font-semibold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text animate-pulse">Found Location</label>
+                        <input type="text" name="location" value="{{ old('location') }}" required 
+                            class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:ring focus:ring-blue-500 bg-gray-800 shadow-sm text-gray-100">
+                        @error('location')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
                 </div>
 
                 <!-- Description -->
                 <div>
-                    <label class="block font-semibold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text animate-pulse text-gray-300">Description</label>
+                    <label class="block font-semibold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text animate-pulse">Description</label>
                     <textarea name="description" required 
                         class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:ring focus:ring-blue-500 bg-gray-800 shadow-sm text-gray-100">{{ old('description') }}</textarea>
                     @error('description')
@@ -28,19 +41,9 @@
                     @enderror
                 </div>
 
-                <!-- Found Location -->
-                <div>
-                    <label class="block font-semibold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text animate-pulse text-gray-300">Found Location</label>
-                    <input type="text" name="location" value="{{ old('location') }}" required 
-                        class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:ring focus:ring-blue-500 bg-gray-800 shadow-sm text-gray-100">
-                    @error('location')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
-                </div>
-
                 <!-- Image Upload -->
                 <div>
-                    <label class="block font-semibold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text animate-pulse text-gray-300">Upload Image</label>
+                    <label class="block font-semibold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text animate-pulse">Upload Image</label>
                     <input type="file" name="image" accept="image/*" 
                         class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:ring focus:ring-blue-500 bg-gray-800 shadow-sm text-gray-100">
                     @error('image')

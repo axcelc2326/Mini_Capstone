@@ -8,11 +8,21 @@
             <form method="POST" action="{{ route('lost-items.store') }}" enctype="multipart/form-data" class="space-y-5">
                 @csrf
 
-                <!-- Item Name -->
-                <div>
-                    <label class="block font-semibold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text animate-pulse text-gray-300">Item Name</label>
-                    <input type="text" name="name" required 
-                        class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:ring focus:ring-yellow-500 bg-gray-800 shadow-sm text-gray-100">
+                <!-- Row: Item Name + Last Seen Location -->
+                <div class="flex flex-col md:flex-row md:space-x-4 space-y-5 md:space-y-0">
+                    <!-- Item Name -->
+                    <div class="w-full">
+                        <label class="block font-semibold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text animate-pulse text-gray-300">Item Name</label>
+                        <input type="text" name="name" required 
+                            class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:ring focus:ring-yellow-500 bg-gray-800 shadow-sm text-gray-100">
+                    </div>
+
+                    <!-- Last Seen Location -->
+                    <div class="w-full">
+                        <label class="block font-semibold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text animate-pulse text-gray-300">Last Seen Location</label>
+                        <input type="text" name="location" required 
+                            class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:ring focus:ring-yellow-500 bg-gray-800 shadow-sm text-gray-100">
+                    </div>
                 </div>
 
                 <!-- Description -->
@@ -20,13 +30,6 @@
                     <label class="block font-semibold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text animate-pulse text-gray-300">Description</label>
                     <textarea name="description" required 
                         class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:ring focus:ring-yellow-500 bg-gray-800 shadow-sm text-gray-100"></textarea>
-                </div>
-
-                <!-- Last Seen Location -->
-                <div>
-                    <label class="block font-semibold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text animate-pulse text-gray-300">Last Seen Location</label>
-                    <input type="text" name="location" required 
-                        class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:ring focus:ring-yellow-500 bg-gray-800 shadow-sm text-gray-100">
                 </div>
 
                 <!-- Image Upload -->

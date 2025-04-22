@@ -17,6 +17,14 @@ Route::get('/terms_and_services', function () {
     return view('terms_and_services.index');
 })->name('terms.services');
 
+Route::get('/about_us', function () {
+    return view('about_us.index');
+})->name('about.us');
+
+Route::get('/contacts', function () {
+    return view('contacts.index');
+})->name('contacts');
+
 Route::resource('lost-items', LostItemController::class)->middleware(['auth', 'can:report-lost-item']); 
 
 Route::resource('found-items', FoundItemController::class)->middleware(['auth', 'can:report-found-item']);
