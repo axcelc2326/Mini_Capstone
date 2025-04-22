@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container mx-auto p-8 bg-gray-900 text-gray-200 rounded-lg shadow-lg">
-    <h1 class="text-4xl font-extrabold mb-6 text-center text-blue-400">Lost and Found - [School Name]</h1>
+    <h1 class="text-4xl font-extrabold mb-6 text-center text-blue-400">Lost and Found - Mater Dei College</h1>
 
     <p class="mb-6 text-lg text-gray-300">
         Welcome to the Lost and Found page of <strong class="text-blue-300">Mater Dei College</strong>. If you have misplaced an item or found something that might belong to someone else, this is the right place to start.
