@@ -47,7 +47,7 @@
             </p>
 
             @if (session('error'))
-                <div class="mt-4 text-red-400 bg-gray-800 rounded-md animate-fade-in font-semibold">
+                <div class="mt-4 text-center text-red-400 bg-gray-800 rounded-md animate-fade-in font-semibold">
                     {{ session('error') }}
                 </div>
             @endif
